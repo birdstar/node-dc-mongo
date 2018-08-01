@@ -67,7 +67,7 @@ console.log("start make graphs");
     		.yAxis().ticks(5);
 
        //Avg speed
-      var avg_dimension = ndx.dimension(function(d) { console.log(d.avg_speed); return d.avg_speed; });
+      var avg_dimension = ndx.dimension(function(d) { console.log("d.avg_speed:"+d.avg_speed); return d; });
       var avg_total = avg_dimension.group().reduce(reduceAdd, reduceRemove, reduceInitial);
    //var avg_total = avg_dimension.group().reduceCount(function(d) { return d.avg_speed });
 
@@ -101,17 +101,17 @@ console.log("start make graphs");
        avgSpeed.height(220)
        		.margins({top: 10, right: 10, bottom: 30, left: 10})
 //       		.valueAccessor(function(d) { console.log(d);return d.value; })
-       		.valueAccessor(function(p) { console.log("P:"+p);return p.value.count > 0 ? p.value.total / p.value.count : 0; })
+       		.valueAccessor(function(p) { console.log(p.value.count > 0 ? p.value.total / p.value.count : 0);return p.value.count > 0 ? p.value.total / p.value.count : 0; })
        		.dimension(avg_dimension)
             .group(avg_total);
 
-            var reducer = reductio().avg(function(d) { return d.avg_speed; })
-
-            // Now it should track count, sum, and avg.
-            avg_sum = ndx.groupAll();
-            reducer(avg_sum);
-
-            console.log("test:"+avg_sum);
+//            var reducer = reductio().avg(function(d) { return d.avg_speed; })
+//
+//            // Now it should track count, sum, and avg.
+//            avg_sum = ndx.groupAll();
+//            reducer(avg_sum);
+//
+//            console.log("test:"+avg_sum);
 
 //function orderValue(p) {
 //  return p.total;
