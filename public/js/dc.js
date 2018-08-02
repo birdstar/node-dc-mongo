@@ -8106,33 +8106,18 @@ dc.gaugeChart = function (parent, chartGroup) {
          *****************************************************************/
          _chart.data(function (group) {
 
-                console.log(group);
-//                return group.all().map(function (d) {
-//                            d.map = function (accessor) { return accessor.call(d, d); };
-//                            return d;
-//                        }).filter(function (d) {
-//                            var values = _chart.valueAccessor()(d);
-//                            return values.length !== 0;
-//                        });
-
-
-                 var valObj = group.value ? group.value() : group.top(1)[0];
                 var valObj = group.value ? group.value() : group.top(1)[0];
-                console.log("valObj:"+valObj);
+                console.log(group.top(1)[0]);
                 var retObj = _chart.valueAccessor()(Array.isArray(valObj) ? valObj : group.top(1)[0]);
                 console.log("retObj:"+retObj);
-//                return _chart.valueAccessor()(retObj);
                 return retObj;
              });
         var needleValue = _chart.data();
         console.log(needleValue);
         if (needleValue) {
-            console.log("1");
 //            needleValue = _chart.valueAccessor()(Array.isArray(needleValue) ? needleValue[0] : needleValue);
         }
         if (!needleValue) {
-
-            console.log("2");
 //            needleValue = _chart.needleValue();
             needleValue = _chart.valueAccessor();
         }
