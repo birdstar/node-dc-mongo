@@ -99,7 +99,7 @@ console.log("start make graphs");
             .group(avg_total);
 
     //Service usage
-    function regroup(dim, cols) {
+    function regroup(dim, cols, removed_prefix) {
         var _groupAll = dim.groupAll().reduce(
             function(p, v) { // add
                 cols.forEach(function(c) {
@@ -123,7 +123,12 @@ console.log("start make graphs");
         return {
             all: function() {
                 // or _.pairs, anything to turn the object into an array
-                return d3.map(_groupAll.value()).entries();
+                var retArray = d3.map(_groupAll.value()).entries();
+                for(var i in retArray){
+                    var tmp_key = retArray[i].key;
+                    retArray[i].key=tmp_key.substring(removed_prefix.length, tmp_key.length);
+                }
+                return retArray;
             }
         };
     }
@@ -131,7 +136,8 @@ console.log("start make graphs");
     // because you won't be able to filter on this dimension
     // we just need something to call .groupAll on.
     var dim = ndx.dimension(function(r) { return r; });
-    var appGroup = regroup(dim, ['sum_app_park_man', 'sum_app_player', 'sum_app_radio', 'sum_app_navi', 'sum_app_vehicle', 'sum_app_tel', 'sum_app_car_play']);
+    var appGroup = regroup(dim, ['sum_app_park_man', 'sum_app_player', 'sum_app_radio', 'sum_app_navi', 'sum_app_vehicle',
+    'sum_app_tel', 'sum_app_car_play'], 'sum_app_');
     var appRowChart = dc.rowChart('#resource-chart')
 //            .width(350)
             .height(220)
@@ -140,13 +146,13 @@ console.log("start make graphs");
             .elasticX(true);
 
 
-// Hard key usage
-var hardKeyGroup = regroup(dim, ['sum_hardkey_back','sum_hardkey_menu','sum_hardkey_mute','sum_hardkey_end','sum_hardkey_send',
+    // Hard key usage
+    var hardKeyGroup = regroup(dim, ['sum_hardkey_back','sum_hardkey_menu','sum_hardkey_mute','sum_hardkey_end','sum_hardkey_send',
                                  'sum_hardkey_volume_up','sum_hardkey_volume_down','sum_hardkey_media','sum_hardkey_on',
                                  'sum_hardkey_navi','sum_hardkey_radio','sum_hardkey_ptt','sum_hardkey_bga',
 //                                 'sum_hardkey_car','sum_hardkey_phone','sum_hardkey_seat','sum_hardkey_favorite',
 //                                 'sum_hardkey_skip_fw','sum_hardkey_skip_bw','sum_hardkey_play_pause','sum_hardkey_web'
-                                 ]);
+                                 ],'sum_hardkey_');
     var hardKeyRowChart = dc.rowChart('#grade-chart')
 //            .width(350)
             .height(220)
@@ -154,7 +160,7 @@ var hardKeyGroup = regroup(dim, ['sum_hardkey_back','sum_hardkey_menu','sum_hard
             .group(hardKeyGroup)
             .elasticX(true);
 
-// Mileage status
+    // Mileage status
     var dim = ndx.dimension(function(r) { return r.mileStage; });
     var appGroup = dim.group(function(r) { return r*MILE_AGE_SCOPE+"-"+(r+1)*MILE_AGE_SCOPE + "  KM" });
     var appRowChart = dc.rowChart('#poverty-chart')
@@ -298,15 +304,6 @@ var hardKeyGroup = regroup(dim, ['sum_hardkey_back','sum_hardkey_menu','sum_hard
 
 
 
-
-//var typePie = dc.pieChart('#type-pie')
-//        .width(400).height(400)
-//        .dimension(typeDim)
-//        .group(typeDim.group());
-
-
-
-
     //Total vehicles
     var ndx2 = crossfilter(dataSet);
     var total_vehicles = dc.numberDisplay("#net-donations");
@@ -336,48 +333,6 @@ var hardKeyGroup = regroup(dim, ['sum_hardkey_back','sum_hardkey_menu','sum_hard
                 .group(ctGroup);
 
 
-
-
-
-var payments = crossfilter([
-  {date: "2011-11-14T16:17:54Z", quantity: 2, total: 190, tip: 100, type: "tab", productIDs:["001"]},
-  {date: "2011-11-14T16:20:19Z", quantity: 2, total: 190, tip: 100, type: "tab", productIDs:["001", "005"]},
-  {date: "2011-11-14T16:28:54Z", quantity: 1, total: 300, tip: 200, type: "visa", productIDs:["004" ,"005"]},
-  {date: "2011-11-14T16:30:43Z", quantity: 2, total: 90, tip: 0, type: "tab", productIDs:["001", "002"]},
-  {date: "2011-11-14T16:48:46Z", quantity: 2, total: 90, tip: 0, type: "tab", productIDs:["005"]},
-  {date: "2011-11-14T16:53:41Z", quantity: 2, total: 90, tip: 0, type: "tab", productIDs:["001", "004" ,"005"]},
-  {date: "2011-11-14T16:54:06Z", quantity: 1, total: 100, tip: 0, type: "cash", productIDs:["001", "002", "003", "004" ,"005"]},
-  {date: "2011-11-14T16:58:03Z", quantity: 2, total: 90, tip: 0, type: "tab", productIDs:["001"]},
-  {date: "2011-11-14T17:07:21Z", quantity: 2, total: 90, tip: 0, type: "tab", productIDs:["004" ,"005"]},
-  {date: "2011-11-14T17:22:59Z", quantity: 2, total: 90, tip: 0, type: "tab", productIDs:["001", "002", "004" ,"005"]},
-  {date: "2011-11-14T17:25:45Z", quantity: 2, total: 200, tip: 0, type: "cash", productIDs:["002"]},
-  {date: "2011-11-14T17:29:52Z", quantity: 1, total: 200, tip: 100, type: "visa", productIDs:["004"]}
-]);
-    var paymentsByTotal = payments.dimension(function(d) { return d.total; });
-    var paymentsByProductID = payments.dimension(function(d) { return d.productIDs; }, true);
-
-//    // Filter to all transactions purchasing a particular product
-//    paymentsByProductID.filter("004");
-//
-//    // Group by product and sum total quantity. Group keys are product IDs.
-//    var quantityGroupByProduct = paymentsByProductID.group().reduceSum(function(d) { return d.quantity; });
-//
-//    // Retrieve top result (as usual, unaffected by filter on associated dimension)
-//    console.log(quantityGroupByProduct.top(1));
-//    // { key: "001", value: 13 }
-
-    var paymentsByType = payments.dimension(function(d) { return d.type; }),
-        paymentVolumeByType = paymentsByType.group().reduceSum(function(d) { return d.total; }),
-
-        topTypes = paymentVolumeByType.top(1);
-        console.log(paymentVolumeByType);
-    console.log(topTypes[0].key); // the top payment type (e.g., "tab")
-    console.log(topTypes[0].value); // the payment volume for that type (e.g., 900)
-console.log("teeee");
-console.log(payments.groupAll().reduceSum(function(d) { return d.total; }).value());
-console.log("ddd");
-var bisectByFoo = crossfilter.bisect.by(function(d) { return d.total; });
-console.log(bisectByFoo);
 
 
 
