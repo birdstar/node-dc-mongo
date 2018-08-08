@@ -6920,6 +6920,8 @@ dc.bubbleOverlay = function (root, chartGroup) {
     function initOverlayG() {
         _g = _chart.select('g.' + BUBBLE_OVERLAY_CLASS);
         if (_g.empty()) {
+
+       console.log(_chart);
             _g = _chart.svg().append('g').attr('class', BUBBLE_OVERLAY_CLASS);
         }
         return _g;
@@ -8105,15 +8107,13 @@ dc.gaugeChart = function (parent, chartGroup) {
          * Needle
          *****************************************************************/
          _chart.data(function (group) {
-
                 var valObj = group.value ? group.value() : group.top(1)[0];
-                console.log(group.top(1)[0]);
+//                console.log(group.top(1)[0]);
                 var retObj = _chart.valueAccessor()(Array.isArray(valObj) ? valObj : group.top(1)[0]);
-                console.log("retObj:"+retObj);
+//                console.log("retObj:"+retObj);
                 return retObj;
              });
         var needleValue = _chart.data();
-        console.log(needleValue);
         if (needleValue) {
 //            needleValue = _chart.valueAccessor()(Array.isArray(needleValue) ? needleValue[0] : needleValue);
         }

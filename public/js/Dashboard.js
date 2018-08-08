@@ -12,7 +12,6 @@ console.log("start make graphs");
 	var MILE_AGE_SCOPE=20
 
 	dataSet.forEach(function(d) {
-	    console.log(d.date);
 //		d.date = dateFormat.parse(d.date);
 //		d.date.setDate(1);
 		totalNum = totalNum+1;
@@ -70,7 +69,20 @@ console.log("start make graphs");
     		.yAxisLabel("Vehicles")
     		.yAxis().ticks(5);
 
-       //Avg speed
+    //Car type
+    var ct = ndx.dimension(function(d) { return d.car_type; });
+    var ctGroup = ct.group();
+    var carTypeChart = dc.pieChart("#funding-chart");
+    carTypeChart
+                .height(220)
+                //.width(350)
+                .radius(90)
+                .innerRadius(40)
+                .transitionDuration(1000)
+                .dimension(ct)
+                .group(ctGroup);
+
+      //Avg speed
       var avg_dimension = ndx.dimension(function(d) { return d; });
       var avg_total = avg_dimension.group().reduce(reduceAdd, reduceRemove, reduceInitial);
 
@@ -94,7 +106,7 @@ console.log("start make graphs");
     var avgSpeed = dc.gaugeChart("#state-donations");
        avgSpeed.height(220)
        		.margins({top: 10, right: 10, bottom: 30, left: 10})
-       		.valueAccessor(function(p) { console.log(p.value.count +":"+ p.value.total);return p.value.count > 0 ? p.value.total / p.value.count : 0; })
+       		.valueAccessor(function(p) { return p.value.count > 0 ? p.value.total / p.value.count : 0; })
        		.dimension(avg_dimension)
             .group(avg_total);
 
@@ -170,140 +182,6 @@ console.log("start make graphs");
             .group(appGroup)
             .elasticX(true);
 
-
-//    var max_svc_dim = ndx.dimension(function(d) { return d; });
-//    var max_svc_grp1 = avg_dimension.group().reduceSum(function(d) { return d.sum_app_park_man; });
-//    var max_svc_grp2 = avg_dimension.group().reduceSum(function(d) { return d.sum_app_player; });
-//
-//    var max_svc_grp = avg_dimension.group().reduce(reduceAddSvc, reduceRemoveSvc, reduceInitialSvc);
-//
-//    function reduceAddSvc(p, v) {
-//            ++p.count;
-//            p.sum_app_park_man += v.sum_app_park_man;
-//            p.sum_app_player += v.sum_app_player;
-//
-//            return p;
-//          }
-//
-//    function reduceRemoveSvc(p, v) {
-//            --p.count;
-//            p.sum_app_park_man -= v.sum_app_park_man;
-//            p.sum_app_player -= v.sum_app_player;
-//            return p;
-//          }
-//
-//          function reduceInitialSvc() {
-//            return {count: 0, sum_app_park_man: 0, sum_app_player:0};
-//          }
-//////////////////////////////////////////////////////
-//    var max_svc_chart = dc.rowChart("#resource-chart");
-//	max_svc_chart
-//		//.width(300)
-//		.height(220)
-//        .dimension(max_svc_dim)
-//        .group(max_svc_2)
-//        .xAxis("test").ticks(4);
-//    var compositeChart = dc.compositeChart("#resource-chart");
-
-//var actuals = dc.barChart("#resource-chart");
-//    var actuals = dc.barChart("compositeChart");
-//                    .gap(65)
-//                    .dimension(max_svc_dim)
-//                    .group(max_svc_grp1);
-//                    .valueAccessor(function (d) {
-//                    console.log(d);
-//                        return d.value.sum_app_park_man;
-//                    });
-
-//     actuals
-//		.width(300)
-//		.height(220)
-//        .dimension(max_svc_dim)
-//        .group(max_svc_grp)
-//        .x(d3.scale.ordinal().domain(['sum_app_park_man', 'abc']))
-//        .xUnits(dc.units.ordinal)
-//        .brushOn(true)
-//        .xAxis().ticks(4);
-
-
-//        var budgets = dc.rowChart(compositeChart);
-//        actuals
-//        		.width(300)
-//        		.height(220)
-//                .dimension(max_svc_dim)
-//                .group(max_svc_grp2)
-//                .xAxis().ticks(4);
-
-//            var budgets = dc.barChart(compositeChart)
-//                    .dimension(max_svc_dim)
-//                    .group(max_svc_grp2)
-//                    .x(d3.scale.ordinal().domain(['sum_app_player']))
-//                    .xUnits(dc.units.ordinal)
-//                    .brushOn(false)
-//                    .xAxis().ticks(4);
-
-//            compositeChart
-//                    .width(300)
-//                    .height(200)
-//                    .dimension(max_svc_dim)
-//                    .group(max_svc_grp)
-////                    .elasticY(true)
-//                    .x(d3.time.scale().domain(timeExtent))
-//                    .xUnits(d3.time.months)
-////                    .round(d3.time.month.round)
-////                    .renderHorizontalGridLines(true)
-//                    .compose([budgets, actuals])
-//                    .brushOn(true);
-//compositeChart
-//        .width(300)
-//        .height(220)
-//        .x(d3.scale.linear().domain([0,100]))
-//        .yAxisLabel("")
-//        .legend(dc.legend().x(80).y(20).itemHeight(13).gap(5))
-//        .renderHorizontalGridLines(true)
-//        .compose(
-//           dc.lineChart(compositeChart)
-//                    .dimension(max_svc_dim)
-//                    .colors('red')
-//                    .group(max_svc_grp1)
-//                    .dashStyle([2,2]),
-//                 dc.lineChart(compositeChart)
-//                    .dimension(max_svc_dim)
-//                    .colors('blue')
-//                    .group(max_svc_grp2)
-//                    .dashStyle([5,5])
-//            )
-//        .brushOn(false)
-////        .render();
-
-
-
-
-//compositeChart
-//   .width(300)
-//   .height(220)
-//   .x(d3.scale.ordinal().domain(['sum_app_park_man','aaa']))
-//   .yAxisLabel("Count")
-//   .xAxisLabel("Age")
-//   .renderHorizontalGridLines(true)
-//   .compose ([actuals
-////      dc.lineChart(compositeChart)
-////         .dimension(max_svc_dim)
-////         .colors('red')
-////         .group(max_svc_grp1, "Male")
-////         .dashStyle([2,2]),
-////      dc.lineChart(compositeChart)
-////         .dimension(max_svc_dim)
-////         .colors('blue')
-////         .group(max_svc_grp2, "Female")
-////         .dashStyle([5,5])
-//   ])
-//.brushOn(true)
-//.render();
-//////////////////////////////////////////////////////
-
-
-
     //Total vehicles
     var ndx2 = crossfilter(dataSet);
     var total_vehicles = dc.numberDisplay("#net-donations");
@@ -319,19 +197,116 @@ console.log("start make graphs");
         .dimension(ndx)
         .group(all);
 
-    //Car type
-    var ct = ndx.dimension(function(d) { return d.car_type; });
-    var ctGroup = ct.group();
-    var carTypeChart = dc.pieChart("#funding-chart");
-    carTypeChart
-                .height(220)
-                //.width(350)
-                .radius(90)
-                .innerRadius(40)
-                .transitionDuration(1000)
-                .dimension(ct)
-                .group(ctGroup);
 
+    //Create map chart
+    var width = 960, height = 350;
+    var svg = d3.select("#map-chart")
+                .append("svg")
+                .attr("width", width)
+                .attr("height", height);
+
+        //创建投影(projection)
+        var projection = d3.geo.mercator().translate([width / 2, height / 2]).center([105, 38]).scale(400);
+
+        //创建path
+        var path = d3.geo.path().projection(projection);
+
+        //解析json
+        d3.json("china.geo.json", function(json) {
+
+            svg.selectAll("path")
+                    .data(json.features)
+                    .enter()
+                    .append("path")
+                    .attr("d", path)
+                    .on('mouseover', function(data) {
+                        d3.select(this).attr('fill', 'rgba(2,2,139,0.61)');
+//                        var pts = d3.select(".bubble-overlay");
+//                        console.log(pts[0][0]);
+//                        svg.append(pts[0][0]);
+                        })
+
+                    .on('mouseout', function(data) {
+                        d3.select(this).attr('fill', 'rgba(128,124,139,0.61)');
+                        //Remove the tooltip
+                        d3.select("#tooltip1").remove();
+                        d3.select("#tooltip2").remove();
+                    })
+//                    .on('click', function(data) {
+//                                           d3.event.stopPropagation();
+//                                        })
+                    .attr('fill', 'rgba(128,124,139,0.61)')
+                    .attr('stroke', 'rgba(255,255,255,1)')
+                    .attr('stroke-width', 1)
+            ;
+        });
+        d3.selection.prototype.moveToFront = function() {
+              return this.each(function(){
+                this.parentNode.appendChild(this);
+              });
+            };
+            d3.selection.prototype.moveToBack = function() {
+                return this.each(function() {
+                console.log(svg);
+                    var firstChild = this.parentNode.firstChild;
+                    if (firstChild) {
+                        this.parentNode.insertBefore(this, firstChild);
+                    }
+                });
+            };
+            console.log(svg);
+
+
+
+//    d3.select(svg).moveToBack();
+//var l=svg[0][0];
+//console.log(l);
+//    var fnode=l.parentNode.firstChild;
+//    if (fnode) {
+//    console.log(fnode);
+//                            l.parentNode.insertBefore(l, fnode);
+//                        }
+    // Create overlay chart
+    var chinaChart = dc.bubbleOverlay("#map-chart")
+                .svg(d3.select("#map-chart svg"));
+    var city2 = ndx.dimension(function(d) { return d.city; });
+    var cityGroup2 = city2.group();
+    chinaChart.width(960)
+                              .height(350)
+                              .dimension(city2)
+                              .group(cityGroup2)
+                              .radiusValueAccessor(function(p) {
+                                  return p.value;
+                              })
+                              .r(d3.scale.linear().domain([0, 200]))
+                              .colors(["#ff7373","#ff4040","#ff0000","#bf3030","#a60000"])
+                              .colorDomain([13, 30])
+                              .colorAccessor(function(p) {
+                                  return Math.floor(p.value);
+//                                    return "#ff00ff";
+                              })
+                              .title(function(d) {
+                                  return "City: " + d.key;
+//                                          + "\nTotal crime per 100k population: " + numberFormat(d.value.avgTotalCrimeRate)
+//                                          + "\nViolent crime per 100k population: " + numberFormat(d.value.avgViolentCrimeRate)
+//                                          + "\nViolent/Total crime ratio: " + numberFormat(d.value.violentCrimeRatio) + "%";
+                              })
+                              .point("Beijing", 560.5, 149)
+                              .point("Shanghai", 586.5, 234)
+                              .debug(false);
+// var pts = d3.select("g.bubble-overlay");
+//        console.log(pts);
+//        d3.select(pts).moveToBack();
+//    chinaChart.onClick= function (d) {
+//    console.log(d);
+////                               var filter = d.key;
+////                               dc.events.trigger(function () {
+////                                   _chart.filter(filter);
+////                                   _chart.redrawGroup();
+////                               });
+//                           };
+
+    dc.renderAll();
 
 
 
@@ -485,6 +460,6 @@ console.log("start make graphs");
 //        .dimension(ndx)
 //        .group(all);
 
-    dc.renderAll();
+
 
 };

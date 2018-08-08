@@ -1,4 +1,5 @@
 var Subjects = require('./models/SubjectViews');
+var dbConfig = require('.././config/db');
 
 module.exports = function(app) {
 
@@ -9,8 +10,7 @@ module.exports = function(app) {
  app.get('/api/data', function(req, res) {
   // use mongoose to get all nerds in the database
   var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/";
- 
+ var url=dbConfig.dbURL;
 MongoClient.connect(url, function(err, db) {
     if (err) throw err;
     var dbo = db.db("mbsample");
@@ -21,9 +21,21 @@ MongoClient.connect(url, function(err, db) {
     });
 });
 
- 
+});
 
-
+ app.get('/api/profile', function(req, res) {
+  // use mongoose to get all nerds in the database
+  var MongoClient = require('mongodb').MongoClient;
+ var url=dbConfig.dbURL;
+MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db("mbsample");
+    dbo.collection("profiles"). find({}).toArray(function(err, result) { // 返回集合中所有数据
+    	if (err) throw err;
+    	res.json(result); // return all nerds in JSON format
+    	db.close();
+    });
+});
 
  // frontend routes =========================================================
  app.get('*', function(req, res) {
