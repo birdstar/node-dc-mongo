@@ -23,27 +23,87 @@ console.log("start make graphs");
 
 	//Select date from dropdown box
 	var date = ndx.dimension(function(d) { return d.date; });
-	var dateGroup = date.group();
+	var dateGroup = date.group().reduce(
+            function (p, d) {
+                if( d.vin in p.vins)
+                    p.vins[d.vin]++;
+                else p.vins[d.vin] = 1;
+                return p;
+            },
 
+            function (p, d) {
+                p.vins[d.vin]--;
+                if(p.vins[d.vin] === 0)
+                    delete p.vins[d.vin];
+                return p;
+            },
+
+            function () {
+                return {vins: {}};
+            });
     //Select date
 	selectField = dc.selectMenu('#menuselect')
             .dimension(date)
+            .valueAccessor(function(p) { return Object.keys(p.value.vins).length;})
             .group(dateGroup);
 
     //Select city
-    var city = ndx.dimension(function(d) { return d.city; });
-    var cityGroup = city.group();
+    var city = ndx.dimension(function(d) { return d.city; })
+    cityGroup = city.group().reduce(
+            function (p, d) {
+                if( d.vin in p.vins)
+                    p.vins[d.vin]++;
+                else p.vins[d.vin] = 1;
+                return p;
+            },
+
+            function (p, d) {
+                p.vins[d.vin]--;
+                if(p.vins[d.vin] === 0)
+                    delete p.vins[d.vin];
+                return p;
+            },
+
+            function () {
+                return {vins: {}};
+            });
 	selectField = dc.selectMenu('#cityselect')
             .dimension(city)
+//            .order(function(d){return Object.keys(d.value.vins).length;})
+            .valueAccessor(function(p) { return Object.keys(p.value.vins).length;})
             .group(cityGroup);
 
     //Vehicle count
     var all = ndx.groupAll();
+    var vc = ndx.dimension(function(d) { return d.vin; });
+    var vcGroup = vc.groupAll().reduce(
+    function (p, d) {
+                    if( d.vin in p.vins)
+                        p.vins[d.vin]++;
+                    else p.vins[d.vin] = 1;
+                    return p;
+                },
+
+                function (p, d) {
+                    p.vins[d.vin]--;
+                    if(p.vins[d.vin] === 0)
+                        delete p.vins[d.vin];
+                    return p;
+                },
+
+                function () {
+                    return {vins: {}};
+                }
+    )
+    var sumAllAmount = date.groupAll().reduce();
+//    selectField = dc.selectMenu('#total-projects')
+//                .dimension(vc)
+//                .group(vcGroup);
     var totalProjects = dc.numberDisplay("#total-projects");
     totalProjects
     		.formatNumber(d3.format("d"))
-    		.valueAccessor(function(d){return d; })
-    		.group(all);
+    		.valueAccessor(function(d){return Object.keys(d.vins).length; })
+    		.group(vcGroup);
 
     //Timestamp select vehicle number
     var ts = ndx.dimension(function(d) { return d.start_timestamp; });
@@ -56,7 +116,7 @@ console.log("start make graphs");
     dateChart
     		//.width(600)
     		.height(220)
-    		.margins({top: 10, right: 20, bottom: 30, left: 20})
+    		.margins({top: 10, right: 20, bottom: 30, left: 40})
     		.dimension(ts)
     		.group(tsGroup)
     		.renderArea(true)
@@ -185,10 +245,28 @@ console.log("start make graphs");
     //Total vehicles
     var ndx2 = crossfilter(dataSet);
     var total_vehicles = dc.numberDisplay("#net-donations");
-    var total_sum = ndx2.groupAll();
+    var total_sum = ndx2.groupAll().reduce(
+        function (p, d) {
+                        if( d.vin in p.vins)
+                            p.vins[d.vin]++;
+                        else p.vins[d.vin] = 1;
+                        return p;
+                    },
+
+                    function (p, d) {
+                        p.vins[d.vin]--;
+                        if(p.vins[d.vin] === 0)
+                            delete p.vins[d.vin];
+                        return p;
+                    },
+
+                    function () {
+                        return {vins: {}};
+                    }
+        )
     total_vehicles
     		.formatNumber(d3.format("d"))
-    		.valueAccessor(function(d){return d; })
+    		.valueAccessor(function(d){return Object.keys(d.vins).length; })
     		.group(total_sum)
     		.formatNumber(d3.format("s"));
 
@@ -278,7 +356,7 @@ console.log("start make graphs");
                               .radiusValueAccessor(function(p) {
                                   return p.value;
                               })
-                              .r(d3.scale.linear().domain([0, 200]))
+                              .r(d3.scale.linear().domain([0, 20000]))
                               .colors(["#ff7373","#ff4040","#ff0000","#bf3030","#a60000"])
                               .colorDomain([13, 30])
                               .colorAccessor(function(p) {
@@ -291,8 +369,8 @@ console.log("start make graphs");
 //                                          + "\nViolent crime per 100k population: " + numberFormat(d.value.avgViolentCrimeRate)
 //                                          + "\nViolent/Total crime ratio: " + numberFormat(d.value.violentCrimeRatio) + "%";
                               })
-                              .point("Beijing", 560.5, 149)
-                              .point("Shanghai", 586.5, 234)
+                              .point("北京", 560.5, 149)
+                              .point("上海", 586.5, 234)
                               .debug(false);
 // var pts = d3.select("g.bubble-overlay");
 //        console.log(pts);

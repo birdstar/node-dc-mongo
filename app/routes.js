@@ -14,9 +14,12 @@ module.exports = function(app) {
 MongoClient.connect(url, function(err, db) {
     if (err) throw err;
     var dbo = db.db("mbsample");
-    dbo.collection("projects"). find({}).toArray(function(err, result) { // 返回集合中所有数据
+//    console.log('start!')
+    console.time('testTime');//testTime为计时器的名称
+    dbo.collection("projects2"). find({}).toArray(function(err, result) { // 返回集合中所有数据
     	if (err) throw err;
     	res.json(result); // return all nerds in JSON format
+//    	console.timeEnd('testTime');
     	db.close();
     });
 });
