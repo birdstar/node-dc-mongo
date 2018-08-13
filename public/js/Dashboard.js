@@ -356,7 +356,7 @@ console.log("start make graphs");
                               .radiusValueAccessor(function(p) {
                                   return p.value;
                               })
-                              .r(d3.scale.linear().domain([0, 20000]))
+                              .r(d3.scale.linear().domain([0, 100000]))
                               .colors(["#ff7373","#ff4040","#ff0000","#bf3030","#a60000"])
                               .colorDomain([13, 30])
                               .colorAccessor(function(p) {
@@ -371,6 +371,8 @@ console.log("start make graphs");
                               })
                               .point("北京", 560.5, 149)
                               .point("上海", 586.5, 234)
+                              .point("广东", 542.5, 293)
+                              .point("四川", 495.5, 263)
                               .debug(false);
 // var pts = d3.select("g.bubble-overlay");
 //        console.log(pts);
