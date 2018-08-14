@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="40cffe37-1c73-4f44-b55b-56d877b2ab98" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/public/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/header.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/Dashboard.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -14,24 +17,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="6" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="25" column="56" selection-start-line="25" selection-start-column="3" selection-end-line="25" selection-end-column="56" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="routes.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/routes.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -41,23 +26,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Dashboard.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Dashboard.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/Dashboard.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="430">
-              <caret line="370" column="32" lean-forward="true" selection-start-line="370" selection-start-column="32" selection-end-line="370" selection-end-column="32" />
+            <state relative-caret-position="193">
+              <caret line="302" column="32" lean-forward="true" selection-start-line="302" selection-start-column="19" selection-end-line="302" selection-end-column="32" />
               <folding>
-                <marker date="1534137303286" expanded="true" signature="12811:13150" ph="..." />
+                <marker date="1534151715844" expanded="true" signature="13639:13978" ph="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dc.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/js/dc.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76065">
-              <caret line="5071" column="14" selection-start-line="5071" selection-start-column="8" selection-end-line="5071" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -74,11 +50,41 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" column="26" lean-forward="true" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="26" />
+            <state relative-caret-position="306">
+              <caret line="115" selection-start-line="115" selection-end-line="120" selection-end-column="61" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="header.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/header.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-591">
+              <caret line="23" column="26" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
+              <folding>
+                <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="header.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/js/header.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="276">
+              <caret line="382" column="61" selection-start-line="382" selection-start-column="61" selection-end-line="382" selection-end-column="61" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Dockerfile" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Dockerfile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="390">
+              <caret line="26" column="29" lean-forward="true" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -95,8 +101,8 @@
       <file leaf-file-name="Dashboard2.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/Dashboard2.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="915">
-              <caret line="61" selection-start-line="61" selection-end-line="61" selection-end-column="27" />
+            <state relative-caret-position="1523">
+              <caret line="281" column="28" selection-start-line="281" selection-start-column="19" selection-end-line="281" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -112,15 +118,15 @@
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>onClick</find>
-      <find>overlay</find>
-      <find>fadeDeselectedArea</find>
-      <find>map-chart</find>
-      <find>bubbleOverlay</find>
-      <find>svg</find>
-      <find>BUBBLE_OVERLAY_CLASS</find>
       <find>mileStage</find>
       <find>carty</find>
       <find>dateFormat</find>
@@ -144,6 +150,13 @@
       <find>order</find>
       <find>driven</find>
       <find>console</find>
+      <find>北京</find>
+      <find>number</find>
+      <find>numberDisplay</find>
+      <find>numberdisplay</find>
+      <find>sumAllAmount</find>
+      <find>reset</find>
+      <find>row-selection</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -155,20 +168,22 @@
         <option value="$PROJECT_DIR$/public/js/Dashboard.js.bak" />
         <option value="$PROJECT_DIR$/public/js/dc.gaugeChart.js" />
         <option value="$PROJECT_DIR$/public/css/style.css" />
-        <option value="$PROJECT_DIR$/public/js/d3.js" />
         <option value="$PROJECT_DIR$/public/js/Dashboard2.js" />
         <option value="$PROJECT_DIR$/DockerFile" />
         <option value="$PROJECT_DIR$/config/db.js" />
         <option value="$PROJECT_DIR$/docker_start.sh" />
-        <option value="$PROJECT_DIR$/Dockerfile" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/pm2.json" />
         <option value="$PROJECT_DIR$/public/index2.html" />
         <option value="$PROJECT_DIR$/app/models/SubjectViews.js" />
         <option value="$PROJECT_DIR$/public/js/dc.js" />
-        <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/app/routes.js" />
+        <option value="$PROJECT_DIR$/public/js/d3.js" />
         <option value="$PROJECT_DIR$/public/js/Dashboard.js" />
+        <option value="$PROJECT_DIR$/public/index.html" />
+        <option value="$PROJECT_DIR$/Dockerfile" />
+        <option value="$PROJECT_DIR$/public/header.html" />
+        <option value="$PROJECT_DIR$/public/js/header.js" />
       </list>
     </option>
   </component>
@@ -195,17 +210,6 @@
             <path>
               <item name="node-dc-mongo" type="b2602c69:ProjectViewProjectNode" />
               <item name="node-dc-mongo" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="node-dc-mongo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="node-dc-mongo" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="node-dc-mongo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="node-dc-mongo" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -221,6 +225,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/wangpeng/projects/node-dc-mongo/public/js/dc.js" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -304,6 +309,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="947" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -314,10 +320,11 @@
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.32875144" />
+      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.32875144" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25238097" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25238097" />
+      <window_info anchor="bottom" id="Find" order="1" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
@@ -329,7 +336,6 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
   <component name="UnknownFeatures">
@@ -339,22 +345,12 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="137" lean-forward="true" selection-start-line="23" selection-start-column="137" selection-end-line="23" selection-end-column="137" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/init.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/Dashboard.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5085">
           <caret line="339" column="57" selection-start-line="339" selection-start-column="57" selection-end-line="339" selection-end-column="57" />
           <folding>
-            <marker date="1534137303286" expanded="true" signature="12811:13150" ph="..." />
+            <marker date="1534151715844" expanded="true" signature="13639:13978" ph="..." />
           </folding>
         </state>
       </provider>
@@ -459,7 +455,7 @@
         <state relative-caret-position="285">
           <caret line="19" column="35" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
           <folding>
-            <marker date="1534137303286" expanded="true" signature="12811:13150" ph="..." />
+            <marker date="1534151715844" expanded="true" signature="13639:13978" ph="..." />
           </folding>
         </state>
       </provider>
@@ -517,13 +513,6 @@
     <entry file="file://$PROJECT_DIR$/public/js/init.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/d3.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9690">
-          <caret line="646" column="29" selection-start-line="646" selection-start-column="29" selection-end-line="646" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -537,13 +526,6 @@
     <entry file="file://$PROJECT_DIR$/Dockerfile_mongo" />
     <entry file="file://$PROJECT_DIR$/LICENSE">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Dockerfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="34" selection-start-line="31" selection-start-column="2" selection-end-line="31" selection-end-column="34" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/docker_start.sh">
       <provider selected="true" editor-type-id="text-editor">
@@ -583,24 +565,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/dc.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76065">
-          <caret line="5071" column="14" selection-start-line="5071" selection-start-column="8" selection-end-line="5071" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/index2.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="12" column="118" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="118" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/Dashboard2.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="915">
-          <caret line="61" selection-start-line="61" selection-end-line="61" selection-end-column="27" />
         </state>
       </provider>
     </entry>
@@ -618,23 +586,68 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/index.html">
+    <entry file="file://$PROJECT_DIR$/public/js/Dashboard2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1523">
+          <caret line="281" column="28" selection-start-line="281" selection-start-column="19" selection-end-line="281" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/d3.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="5923" column="40" selection-start-line="5923" selection-start-column="31" selection-end-line="5923" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/dc.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="129">
+          <caret line="5071" column="14" selection-start-line="5071" selection-start-column="8" selection-end-line="5071" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/Dashboard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="302" column="32" lean-forward="true" selection-start-line="302" selection-start-column="19" selection-end-line="302" selection-end-column="32" />
+          <folding>
+            <marker date="1534151715844" expanded="true" signature="13639:13978" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Dockerfile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
-          <caret line="26" column="26" lean-forward="true" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="26" />
+          <caret line="26" column="29" lean-forward="true" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="115" selection-start-line="115" selection-end-line="120" selection-end-column="61" />
           <folding>
             <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/Dashboard.js">
+    <entry file="file://$PROJECT_DIR$/public/header.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="370" column="32" lean-forward="true" selection-start-line="370" selection-start-column="32" selection-end-line="370" selection-end-column="32" />
+        <state relative-caret-position="-591">
+          <caret line="23" column="26" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
           <folding>
-            <marker date="1534137303286" expanded="true" signature="12811:13150" ph="..." />
+            <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/header.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="382" column="61" selection-start-line="382" selection-start-column="61" selection-end-line="382" selection-end-column="61" />
         </state>
       </provider>
     </entry>
