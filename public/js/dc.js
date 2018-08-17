@@ -7173,7 +7173,6 @@ dc.rowChart = function (parent, chartGroup) {
 
     function drawChart() {
         _rowData = _chart.data();
-
         drawAxis();
         drawGridLines();
 

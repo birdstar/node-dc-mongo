@@ -45,4 +45,27 @@ MongoClient.connect(url, function(err, db) {
   res.sendfile('./public/login.html');
  });
 });
+
+ app.get('/api/sessions', function(req, res) {
+  // use mongoose to get all nerds in the database
+  var MongoClient = require('mongodb').MongoClient;
+ var url=dbConfig.dbURL;
+MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db("mbsample");
+    console.time('testTime');//testTime为计时器的名称
+    dbo.collection("sessions"). find({}).toArray(function(err, result) { // 返回集合中所有数据
+    	if (err) throw err;
+    	console.timeEnd('testTime');
+    	res.json(result); // return all nerds in JSON format
+    	db.close();
+    });
+});
+
+ // frontend routes =========================================================
+ app.get('*', function(req, res) {
+  res.sendfile('./public/login.html');
+ });
+});
+
 }
