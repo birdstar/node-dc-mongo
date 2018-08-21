@@ -352,14 +352,12 @@ console.log("start make graphs");
             };
             d3.selection.prototype.moveToBack = function() {
                 return this.each(function() {
-                console.log(svg);
                     var firstChild = this.parentNode.firstChild;
                     if (firstChild) {
                         this.parentNode.insertBefore(this, firstChild);
                     }
                 });
             };
-            console.log(svg);
 
 
     // Create overlay chart

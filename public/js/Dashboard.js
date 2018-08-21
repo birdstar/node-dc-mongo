@@ -383,12 +383,14 @@ console.log("start make graphs");
                               .dimension(city2)
                               .group(cityGroup2)
                               .radiusValueAccessor(function(p) {
+//
                                   return p.value;
                               })
                               .r(d3.scale.linear().domain([0, 100000]))
                               .colors(["#ff7373","#ff4040","#ff0000","#bf3030","#a60000"])
                               .colorDomain([13, 30])
                               .colorAccessor(function(p) {
+                              console.log(p);
                                   return Math.floor(p.value);
 //                                    return "#ff00ff";
                               })

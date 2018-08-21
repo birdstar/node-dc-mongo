@@ -340,85 +340,96 @@ console.log("start make graphs");
 
 
 
-//     var hardkey_seq_dim = ndx.dimension(function(d) {var ret=d.hard_key_seq.split('-'); return ret;})
-//     hardkey_seq_dim.filterFunction(function(d) {return d.length>30 })
-//
-////        hardkey_seq_dim=hardkey_seq_dim.filterFunction(function(d) {if (d.size!=1 || d[0]!="NULL") return d; });
-////        if (ret !== null && ret !== undefined && ret !== '' && ret.size!=0 ) return ret;});
-////     var hardkey_seq_group= hardkey_seq_dim.group(function(d) {if (d !== null && d !== undefined && d !== '' && d.size!=1)
-////        return d;});
-//     var hardkey_seq_group = hardkey_seq_dim.group(function(d) {return d});
-//
-//console.log(hardkey_seq_group.top(10)[1])
-//     console.log(hardkey_seq_group.top(10)[2])
-//          console.log(hardkey_seq_group.top(10)[3])
-//
-////        .reduceSum(function (d){return d.length;});
-////     var picturesDimension = ndx.dimension(function (d) {
-////             return d.file.split('/');
-////         });
-//
-//    // d3.schemeCategory20b has been removed from D3v5
-//    var d3SchemeCategory20b = [
-//        '#393b79','#5254a3','#6b6ecf','#9c9ede','#637939',
-//        '#8ca252','#b5cf6b','#cedb9c','#8c6d31','#bd9e39',
-//        '#e7ba52','#e7cb94','#843c39','#ad494a','#d6616b',
-//        '#e7969c','#7b4173','#a55194','#ce6dbd','#de9ed6'
-//    ];
-//     var hardkeySeqChart = dcv3.sunburstChart('#hardkey-seq-chart')
-//     //            .width(350)
-//                 .height(220)
-//                 .valueAccessor(function(d){return d;})
-//                 .dimension(hardkey_seq_dim)
-//                 .group(hardkey_seq_group)
-////                 .colors(d3v5.scaleOrdinal(d3SchemeCategory20b))
-//                 .legend(dc.legend());
-//
-//    dc.renderAll();
-//    dcv3.renderAll();
+     var hardkey_seq_dim = ndx.dimension(function(d) {return d.hard_key_seq.split('-').slice(0,10);})
+     var hardkey_seq_group = hardkey_seq_dim.group();
+     var hardkey_seq_group = remove_empty_bins(hardkey_seq_group) // or filter_bins, or whatever
 
-//var ndx = crossfilter([
-//  {date: "2011-11-14T16:17:54Z", quantity: 2, total: 190, tip: 100, hard_key_seq: "NULL"},
-//  {date: "2011-11-14T16:20:19Z", quantity: 2, total: 190, tip: 100, hard_key_seq: "NULL"},
-//  {date: "2011-11-14T16:28:54Z", quantity: 1, total: 300, tip: 200, hard_key_seq: "NULL"},
-//  {date: "2011-11-14T16:30:43Z", quantity: 2, total: 90, tip: 0, hard_key_seq: "NULL"},
-//  {date: "2011-11-14T16:48:46Z", quantity: 2, total: 90, tip: 0, hard_key_seq: "NULL"},
-//  {date: "2011-11-14T16:53:41Z", quantity: 2, total: 90, tip: 0, hard_key_seq: "A-B-C"},
-//  {date: "2011-11-14T16:54:06Z", quantity: 1, total: 100, tip: 0, hard_key_seq: "A-B"},
-//  {date: "2011-11-14T16:58:03Z", quantity: 2, total: 90, tip: 0, hard_key_seq: "B"},
-//  {date: "2011-11-14T17:07:21Z", quantity: 2, total: 90, tip: 0, hard_key_seq: "A-B-D"},
-//  {date: "2011-11-14T17:22:59Z", quantity: 2, total: 90, tip: 0, hard_key_seq: "A-B"},
-//  {date: "2011-11-14T17:25:45Z", quantity: 2, total: 200, tip: 0, hard_key_seq: "C-D"},
-//  {date: "2011-11-14T17:29:52Z", quantity: 1, total: 200, tip: 100, hard_key_seq: "C"}
-//]);
+     function remove_empty_bins(source_group) {
+            return {
+                all:function () {
+                    return source_group.all().filter(function(d) {
+                        //return Math.abs(d.value) > 0.00001; // if using floating-point numbers
+                        var key = d.key;
+                        if (key.length!=1 || key[0]!="NULL") return true
+                        else return false;
+                    });
+                }
+            };
+     }
 
-    var fileChart = dcv3.sunburstChart("#hardkey-seq-chart");
-//    var typeChart = dc.pieChart("#type_chart");
-//    d3v5.tsv("cat.tsv").then(function (cats) {
-//        var ndx = crossfilter(cats);
-//        var picturesDimension = ndx.dimension(function (d) {console.log(d);
-//            return d.file.split('/');
-//        });
-        var picturesDimension = ndx.dimension(function(d) {return d.hard_key_seq.split('-').slice(0,3);})
-//        picturesDimension.filter(function(d){console.log(d.length !== 1 );return d.length !== 1 ;})
-        var picturesGroup = picturesDimension.group();
-        // d3.schemeCategory20b has been removed from D3v5
-        var d3SchemeCategory20b = [
-            '#393b79','#5254a3','#6b6ecf','#9c9ede','#637939',
-            '#8ca252','#b5cf6b','#cedb9c','#8c6d31','#bd9e39',
-            '#e7ba52','#e7cb94','#843c39','#ad494a','#d6616b',
-            '#e7969c','#7b4173','#a55194','#ce6dbd','#de9ed6'
-        ];
-        fileChart
-            .width(700)
-            .height(640)
-            .dimension(picturesDimension)
-            .group(picturesGroup)
-//            .colors(d3.scale.ordinal(d3SchemeCategory20b))
-            .legend(dcv3.legend());
 
-        dc.renderAll();
-        dcv3.renderAll();
+    // d3.schemeCategory20b has been removed from D3v5
+    var d3SchemeCategory20b = [
+        '#393b79','#5254a3','#6b6ecf','#9c9ede','#637939',
+        '#8ca252','#b5cf6b','#cedb9c','#8c6d31','#bd9e39',
+        '#e7ba52','#e7cb94','#843c39','#ad494a','#d6616b',
+        '#e7969c','#7b4173','#a55194','#ce6dbd','#de9ed6'
+    ];
+     var hardkeySeqChart = dcv3.sunburstChart('#hardkey-seq-chart')
+     //            .width(350)
+                 .height(220)
+                 .dimension(hardkey_seq_dim)
+                 .group(hardkey_seq_group)
+//                 .colors(d3v5.scaleOrdinal(d3SchemeCategory20b))
+                 .legend(dc.legend());
+
+    var hardkeySeqChartTopN = dcv3.sunburstChart('#hardkey-seqT-chart')
+         //            .width(350)
+                     .height(220)
+                     .dimension(hardkey_seq_dim)
+                     .cap(20)
+                     .othersGrouper(false)
+                     .group(hardkey_seq_group)
+    //                 .colors(d3v5.scaleOrdinal(d3SchemeCategory20b))
+                     .legend(dc.legend());
+
+    dc.renderAll();
+    dcv3.renderAll();
+
+//    var fileChart = dcv3.sunburstChart("#hardkey-seq-chart");
+//    var fileChart = dcv3.sunburstChart("#hardkey-seq-chart");
+////    var typeChart = dc.pieChart("#type_chart");
+////    d3v5.tsv("cat.tsv").then(function (cats) {
+////        var ndx = crossfilter(cats);
+////        var picturesDimension = ndx.dimension(function (d) {console.log(d);
+////            return d.file.split('/');
+////        });
+//        var picturesDimension = ndx.dimension(function(d) {return d.hard_key_seq.split('-').slice(0,10);})
+////        picturesDimension.filter(function(d){console.log(d.length !== 1 );return d.length !== 1 ;})
+//        var picturesGroup = picturesDimension.group();
+//
+//        var picturesGroup = remove_empty_bins(picturesGroup) // or filter_bins, or whatever
+//
+//        function remove_empty_bins(source_group) {
+//            return {
+//                all:function () {
+//                    return source_group.all().filter(function(d) {
+//                        //return Math.abs(d.value) > 0.00001; // if using floating-point numbers
+//                        var key = d.key;
+//                        if (key.length!=1 || key[0]!="NULL") return true
+//                        else return false;
+//                    });
+//                }
+//            };
+//        }
+//
+//        // d3.schemeCategory20b has been removed from D3v5
+//        var d3SchemeCategory20b = [
+//            '#393b79','#5254a3','#6b6ecf','#9c9ede','#637939',
+//            '#8ca252','#b5cf6b','#cedb9c','#8c6d31','#bd9e39',
+//            '#e7ba52','#e7cb94','#843c39','#ad494a','#d6616b',
+//            '#e7969c','#7b4173','#a55194','#ce6dbd','#de9ed6'
+//        ];
+//        fileChart
+////            .width(700)
+//            .height(320)
+//            .dimension(picturesDimension)
+//            .group(picturesGroup)
+////            .colors(d3.scale.ordinal(d3SchemeCategory20b))
+//            .legend(dcv3.legend());
+//
+//        dc.renderAll();
+//        dcv3.renderAll();
 //    });
 
 };
