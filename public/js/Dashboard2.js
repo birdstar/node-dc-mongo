@@ -24,7 +24,7 @@ console.log("start make graphs");
 	var ndx = crossfilter(dataSet);
 
 	//Select date from dropdown box
-	var date = ndx.dimension(function(d){return d.fake_date;});
+	var date = ndx.dimension(function(d){return d.date;});
 	var dateGroup = date.group();
 
     //Select date
@@ -33,7 +33,7 @@ console.log("start make graphs");
             .group(dateGroup);
 
     //Select city
-    var city = ndx.dimension(function(d){return d.departure_city});
+    var city = ndx.dimension(function(d){return d.city});
     var cityGroup = city.group();
 	selectField = dc.selectMenu('#cityselect')
             .dimension(city)
