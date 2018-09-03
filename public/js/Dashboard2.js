@@ -213,19 +213,19 @@ console.log("start make graphs");
             };
             d3.selection.prototype.moveToBack = function() {
                 return this.each(function() {
-                console.log(svg);
+//                console.log(svg);
                     var firstChild = this.parentNode.firstChild;
                     if (firstChild) {
                         this.parentNode.insertBefore(this, firstChild);
                     }
                 });
             };
-            console.log(svg);
+//            console.log(svg);
 
     // Create overlay chart
     var chinaChart = dc.bubbleOverlay("#map-chart")
                 .svg(d3.select("#map-chart svg"));
-    var city2 = ndx.dimension(function(d) {return d.departure_city; });
+    var city2 = ndx.dimension(function(d) {return d.city; });
     var cityGroup2 = city2.group();
     chinaChart.width(960)
                               .height(350)

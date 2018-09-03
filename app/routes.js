@@ -24,6 +24,23 @@ module.exports = function(app) {
         });
     });
 
+    app.get('/api/navi', function(req, res) {
+        // use mongoose to get all nerds in the database
+        var MongoClient = require('mongodb').MongoClient;
+        var url=dbConfig.dbURL;
+        MongoClient.connect(url, function(err, db) {
+            if (err) throw err;
+            var dbo = db.db("mbsample");
+            console.time('testTime');//testTime为计时器的名称
+            dbo.collection("navi"). find({}).toArray(function(err, result) { // 返回集合中所有数据
+                if (err) throw err;
+                res.json(result); // return all nerds in JSON format
+        //    	console.timeEnd('testTime');
+                db.close();
+            });
+        });
+    });
+
     app.get('/api/profile', function(req, res) {
         // use mongoose to get all nerds in the database
         var MongoClient = require('mongodb').MongoClient;
